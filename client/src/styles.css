@@ -1,0 +1,164 @@
+/* RESET / BASE */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #EEE1FC;
+    color: #111;
+}
+
+/* =========================================================================HEADER */
+header {
+    height: 120px;
+    background-color: #663399;
+    border-bottom: 10px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+#donate {
+    position: absolute;
+    left: 20px;
+    padding: 10px 16px;
+    background-color: #fff;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+/*==========================================Header continued*/
+@keyframes fadeIn{
+    from{
+    opacity: 0;
+    transformL: translateX(10px);
+}
+to {
+    opacity: 1;
+    transform: translateX(0);
+}
+}
+header h1 {/* removed my h1 text leaving this here incase we put it back in ...can change later- Rory*/
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #fff;
+    font-size: 2rem;
+}
+
+header img {
+    height: 50px;
+    opacity: 0;
+    animation: fadeIn 2s ease forwards;
+    animation-delay: 0.4s;
+}
+
+/* ================================================SEARCH / CONTROLS */
+#inventory-controls {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    background-color: #EEE1FC;
+
+}
+
+.controls-left {
+    flex: 1;
+}
+
+#search {
+    width: 50%;
+    padding: 12px 14px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #000000;
+    background-color: #DBBDF9;
+}
+
+.controls-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+#add,
+#edit,
+#filter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+#add img,
+#edit img,
+#filter img {
+    height: 28px;
+}
+
+
+
+/* =======================================CATEGORY BOXES*/
+/* tried a few different things including grid these boxes dont want to be on the same row as shown in the figma - rory*/
+#inventory-metadata {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    flex-wrap: nowrap;
+}
+
+.cat-box {
+    flex:1;
+    height: 80px;
+    min-width: 80px;
+    background-color: #DBBDF9;
+    border: 2px solid black;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================================INVENTORY TABLE AREA*/
+/*not really done much with this, i want to see what it looks like once its been appended by the DOM - Rory*/
+#inventory-table {
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    min-height: 300px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+}
+
+/*=============================================modal*/
+.modal {
+  display: none; 
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5); 
+}
+
+.modal-content {
+  background-color: #DBBDF9;
+  margin: 80px auto;
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
