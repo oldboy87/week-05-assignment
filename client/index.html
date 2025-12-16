@@ -1,44 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PantryPal</title>
-    <link rel="stylesheet" href="./src/styles.css" />
-    <script src="./src/app.js" type="module" defer></script>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PantryPal</title>
+  <link rel="stylesheet" href="./src/styles.css" />
+  <script src="./src/app.js" type="module" defer></script>
+</head>
+<body>
 
-  <body>
-    <header>
-      <div type="button" id="donation">Donation</div>
-      <h1>Pantry Pal<img src="#" alt="pantrypal logo" /></h1>
-    </header>
+  <header>
+    <div type="button" id="donate">Donation</div>
+  <h1><img src="./public/assets/icons/LogoPantryPalWithH1.png" alt="pantrypal logo"/></h1>
+</header>
 
-    <!-- SEARCH/ CONTROL SECTION -->
-    <section id="inventory-controls">
-      <div class="controls-left">
-        <input type="text" id="search" placeholder="Search inventory..." />
-      </div>
+<!-- SEARCH/ CONTROL SECTION -->
+<section id="inventory-controls">
+<div class="controls-left">
+<input type="text" id="search" placeholder="Search inventory..." /><!--SEARCH-->
+</div>
 
-      <div class="controls-right">
-        <button id="add-btn">Add</button>
-        <button id="edit-btn">Edit</button>
-        <button id="filter-btn">Filter</button>
-      </div>
-    </section>
+<div class="controls-right">
+<div id="add"><img src="./public/assets/icons/add_circle.png"></div><!--Add-->
+<div id="edit"><img src="./public/assets/icons/Edit.png"></div><!--Edit-->
+<div id="filter"><img src="./public/assets/icons/Filter.png"></div><!--Filter-->
+</div>
+</section>
 
-    <!-- Cat BOXES -->
-    <section id="inventory-metadata">
-      <div class="cat-box" id="category">Category</div>
-      <div class="cat-box" id="sub-category">Sub Category</div>
-      <div class="cat-box" id="date-added">Date Added</div>
-      <div class="cat-box" id="storage-location">Storage Location</div>
-      <div class="cat-box" id="expiry-date">Expiry Date</div>
-    </section>
 
-    <!-- INVENTORY SECTION -->
-    <section id="table-container">
-      <!-- Using DOM manipulation, TABLE HEADERS and TABLE ROWS will be appended to this parent container -->
-    </section>
-  </body>
+<!-- Cat BOXES -->
+<section id="inventory-metadata">
+<div class="cat-box" id="category">Category</div>
+<div class="cat-box" id="sub_category">Sub Category</div>
+<div class="cat-box" id="date_added">Date Added</div>
+<div class="cat-box" id="storage_location">Storage Location</div>
+<div class="cat-box" id="expiry_date">Expiry Date</div>
+</section>
+
+
+<!-- INVENTORY SECTION -->
+<section id="inventory-table">
+<!--
+Using DOM manipulation, TABLE HEADERS and TABLE ROWS
+will be appended to this parent container
+-->
+</section>
+
+</body>
 </html>
