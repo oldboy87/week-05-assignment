@@ -286,129 +286,21 @@ function createForm(outerSection) {
   }
 }
 
-//! ---------------------------------- NENE START ---------------------------------- //
-console.log(getData());
-// ** DOM manipulation --> INVENTORY TABLE **
-//column header titles
-const columnName = [
-  "NAME",
-  "DATE ADDED",
-  "QUANTITY",
-  "UNITTYPE",
-  "CATEGORY",
-  "SUBCATEGORY",
-  "LOCATION",
-  "EXPIRY DATE",
-  "COMMENTS",
-];
-
-async function createTable(columns) {
-  const itemData = await getData();
-  const tableContainer = document.getElementById("inventory-table");
-
-  const table = document.createElement("table");
-  console.log(table);
-  table.style.border = "1px solid";
-  tableContainer.appendChild(table);
-
-  tableContainer.appendChild(table);
-  // Create THEAD
-  const thead = table.createTHead();
-  const headerRow = thead.insertRow();
-
-  columns.forEach((columnName) => {
-    const th = document.createElement("th");
-    th.textContent = columnName;
-    headerRow.appendChild(th);
-  });
-
-  // Create TBODY
-  const tbody = table.createTBody();
-  return { table, tbody };
-}
-
-function populateRows(tbody, data) {
-  data.forEach((item) => {
-    const row = tbody.insertRow();
-    const values = [
-      item.name,
-      item.date_added,
-      item.quantity,
-      item.unit_type,
-      item.category,
-      item.subcategory,
-      item.location,
-      item.expiry_date,
-      item.comments,
-    ];
-
-    values.forEach((value) => {
-      const cell = row.insertCell();
-      cell.textContent = value;
-    });
-  });
-}
-
-async function getData(url) {
-  const response = await fetch("http://localhost:8080/stock");
-  console.log(response);
-  const data = await response.json();
-  console.log(data);
-  return data;
-}
-
-createTable(columnName);
-
-//! ---------------------------------- NENE END ---------------------------------- //
-
 //TODO: ============ Tom's code ===================
-
-//THIS IS A TEST ARRAY OF OBJECTS FOR TESTING SEARCH FUNTIONALITY
-const people = [
-  {
-    name: "Fred",
-    job: "builder",
-  },
-  {
-    name: "Frump",
-    job: "builder",
-  },
-  {
-    name: "Flodd",
-    job: "builder",
-  },
-  {
-    name: "Flap",
-    job: "builder",
-  },
-  {
-    name: "Bill",
-    job: "builder",
-  },
-  {
-    name: "Bran",
-    job: "builder",
-  },
-  {
-    name: "Bronn",
-    job: "builder",
-  },
-  {
-    name: "Steve",
-    job: "builder",
-  },
-  {
-    name: "Sam",
-    job: "builder",
-  },
-];
 
 //functions for all possible button interactions goes here:
 function donate() {
   alert("To donation page");
 }
 
-const databaseValues = getData();
+const databaseValues = await getData();
+console.log("Database Values:");
+console.log(databaseValues);
+console.log(databaseValues.length);
+
+const foundItems = [];
+
+//TODO: Need to clear previous search entries
 
 function search() {
   let flag = false;
@@ -416,14 +308,20 @@ function search() {
   const searchvalue = document.querySelector(".searchbar").value;
   console.log("Searchbar input:");
   console.log(searchvalue);
-  for (let i = 0; i < formValues.length; i++) {
-    if (searchvalue === databaseValues[i].name) {
+  for (let i = 0; i < databaseValues.length; i++) {
+    console.log("current datasbase value:");
+    console.log(databaseValues[i].item_name);
+    if (searchvalue === databaseValues[i].item_name) {
       flag = true;
+      foundItems[i] = databaseValues[i];
     } else {
     }
+    console.log("foundItems:");
+    console.log(foundItems);
   }
   if (flag == true) {
     alert("Item was found");
+    createTable(columnName);
   } else {
     alert("No such item was found");
   }
@@ -528,3 +426,89 @@ const searchbar = createSearchBar();
 loopButtons(pageloadButtons);
 
 //TODO =============END Tom's Code ==================
+
+//! ---------------------------------- NENE START /rory edit---------------------------------- //
+console.log("Inventory table loading..."); //======rory// replaced Promise
+
+// ** DOM manipulation --> INVENTORY TABLE **
+//column header titles
+const columnName = [
+  "NAME",
+  "DATE ADDED",
+  "QUANTITY",
+  "UNITTYPE",
+  "CATEGORY",
+  "SUBCATEGORY",
+  "LOCATION",
+  "EXPIRY DATE",
+  "COMMENTS",
+];
+
+function createTable(columns) {
+  const itemData = foundItems;
+  const tableContainer = document.getElementById("inventory-table"); //======rory// fixed container reference
+
+  tableContainer.innerHTML = ""; //==========================================rory/
+
+  const table = document.createElement("table");
+  console.log(table);
+  table.style.border = "1px solid black";
+  table.style.width = "100%";
+
+  tableContainer.appendChild(table); //======rory// (removed duplicate)
+
+  // Create THEAD
+  const thead = table.createTHead();
+  const headerRow = thead.insertRow();
+
+  columns.forEach((columnName) => {
+    const th = document.createElement("th");
+    th.textContent = columnName;
+    th.style.border = "1px solid black";
+    th.style.padding = "8px";
+    headerRow.appendChild(th);
+  });
+
+  // Create TBODY
+  const tbody = table.createTBody();
+
+  populateRows(tbody, itemData); //======populate the table===rory//
+}
+
+function populateRows(tbody, data) {
+  data.forEach((item) => {
+    const row = tbody.insertRow();
+
+    const values = [
+      item.item_name, //===============rory//
+      item.date_added,
+      item.quantity,
+      item.unit_type,
+      item.category,
+      item.subcategory,
+      item.storage_location, //===============================rory//
+      item.expiry_date,
+      item.comments,
+    ];
+
+    values.forEach((value) => {
+      const cell = row.insertCell();
+      cell.textContent = value ?? ""; //===================================rory// prevents "undefined"
+      cell.style.border = "1px solid black";
+      cell.style.padding = "6px";
+    });
+  });
+}
+
+async function getData() {
+  //=========rory// removed unused param
+  const response = await fetch("http://localhost:8080/stock");
+  console.log(response);
+  const data = await response.json();
+  console.log(data);
+  return data;
+}
+
+createTable(columnName); //======rory// pass column headers
+
+//! ---------------------------------- NENE END ---------------------------------- //
