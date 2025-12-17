@@ -251,6 +251,7 @@ async function handleAddNewItemFormSubmit(event) {
   //TODO: clear form and close modal on submit - no need to make a new one
 }
 
+//! ---------------------------------- NENE START ---------------------------------- //
 console.log(getData());
 // ** DOM manipulation --> INVENTORY TABLE **
 //column header titles
@@ -321,6 +322,8 @@ async function getData(url) {
 }
 
 createTable();
+
+//! ---------------------------------- NENE END ---------------------------------- //
 
 //TODO: ============ Tom's code ===================
 
