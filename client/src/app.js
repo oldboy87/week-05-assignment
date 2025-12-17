@@ -269,12 +269,12 @@ const columnName = [
 
 async function createTable(columns) {
   const itemData = await getData();
-  document.getElementById("table-container");
-  tableContainer.appendChild(table);
+  const tablecontainer = document.getElementById("table-container");
 
   const table = document.createElement("table");
   console.log(table);
   table.style.border = "1px solid";
+  tableContainer.appendChild(table);
 
   // Create THEAD
   const thead = table.createTHead();
@@ -371,20 +371,25 @@ const people = [
 function donate() {
   alert("To donation page");
 }
+
+const databaseValues = getData();
+
 function search() {
   let flag = false;
-  const dudeSearch = document.getElementById("search").value;
-  console.log(dudeSearch);
-  for (let i = 0; i < people.length; i++) {
-    if (dudeSearch === people[i].name) {
+  //   const searchvalue = document.getElementById("search").value;
+  const searchvalue = document.querySelector(".searchbar").value;
+  console.log("Searchbar input:");
+  console.log(searchvalue);
+  for (let i = 0; i < formValues.length; i++) {
+    if (searchvalue === databaseValues[i].name) {
       flag = true;
     } else {
     }
   }
   if (flag == true) {
-    alert("Dude was found");
+    alert("Item was found");
   } else {
-    alert("No such dude was found");
+    alert("No such item was found");
   }
 }
 function add() {
@@ -419,10 +424,6 @@ const pageloadButtons = [
     id: "filter",
     func: filter,
   },
-  {
-    id: "searchdude",
-    func: searchdude,
-  },
 ];
 
 //buttons added to the page with DOM will be added here:
@@ -456,9 +457,18 @@ console.log(pageloadButtons[0]);
 
 console.log(pageloadButtons.length);
 
+function createSearchBar() {
+  const container = document.getElementById("search");
+  const searchbar = document.createElement("input");
+  searchbar.setAttribute("id", "search");
+  searchbar.setAttribute("class", "searchbar");
+  searchbar.setAttribute("placeholder", "Search inventory...");
+  container.appendChild(searchbar);
+}
+
 function createButton(id, func) {
   //TODO: container needs to be assigned to div with corresponding id. For testing purposes, this is in the body.
-  const container = document.body;
+  const container = document.getElementById(id);
   const button = document.createElement("button");
   button.setAttribute("class", "button");
   button.setAttribute("id", id);
@@ -478,8 +488,7 @@ function loopButtons(pageloadButtons) {
   }
 }
 
+const searchbar = createSearchBar();
 loopButtons(pageloadButtons);
 
 //TODO =============END Tom's Code ==================
-
-
