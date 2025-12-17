@@ -43,7 +43,7 @@ app.post("/add_item", async function (req, _) {
       addStock.category,
       addStock.subcategory,
       addStock.storage_location,
-      addStock.expiry_Date,
+      addStock.expiry_date,
       addStock.comments,
     ]
   );
