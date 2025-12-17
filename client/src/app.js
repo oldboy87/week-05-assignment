@@ -60,7 +60,7 @@ function createForm(outerSection) {
   itemNameLabel.htmlFor = "item_name";
   itemNameLabel.textContent = "Item Name: ";
   const itemNameInput = document.createElement("input");
-  itemNameInput.name = "item-name";
+  itemNameInput.name = "item_name";
   itemNameInput.type = "text";
   itemNameInput.placeholder = "e.g. bread";
   itemNameInput.required = true;
@@ -83,7 +83,7 @@ function createForm(outerSection) {
   unitTypeLabel.htmlFor = "unit_type";
   unitTypeLabel.textContent = "Unit Type: ";
   const unitTypeInput = document.createElement("select");
-  unitTypeInput.name = "unit-type";
+  unitTypeInput.name = "unit_type";
   unitTypeInput.required = true;
   unitTypeInput.placeholder = "unit";
   const unitTypePlaceholder = document.createElement("option");
@@ -93,16 +93,16 @@ function createForm(outerSection) {
   unitTypePlaceholder.selected = true;
   unitTypePlaceholder.hidden = true;
   const optG = document.createElement("option");
-  optG.value = "grams";
+  optG.value = "G";
   optG.text = "grams";
   const optKG = document.createElement("option");
-  optKG.value = "kilograms";
+  optKG.value = "KG";
   optKG.text = "kilograms";
   const optML = document.createElement("option");
-  optML.value = "mililetres";
+  optML.value = "ML";
   optML.text = "mililetres";
   const optL = document.createElement("option");
-  optL.value = "litres";
+  optL.value = "L";
   optL.text = "litres";
   const optItems = document.createElement("option");
   optItems.value = "items";
@@ -129,20 +129,20 @@ function createForm(outerSection) {
   categoryPlaceholder.selected = true;
   categoryPlaceholder.hidden = true;
   const optC1 = document.createElement("option");
-  optC1.value = "beverages";
+  optC1.value = "Beverages";
   optC1.text = "Beverages";
   const optC2 = document.createElement("option");
-  optC2.value = " ";
-  optC2.text = " ";
+  optC2.value = "Food";
+  optC2.text = "Food";
   const optC3 = document.createElement("option");
-  optC3.value = " ";
-  optC3.text = " ";
+  optC3.value = "Cleaning Supplies";
+  optC3.text = "Cleaning Supplies";
   const optC4 = document.createElement("option");
-  optC4.value = " ";
-  optC4.text = " ";
+  optC4.value = "Personal Hygiene";
+  optC4.text = "Personal Hygiene";
   const optC5 = document.createElement("option");
-  optC5.value = " ";
-  optC5.text = " ";
+  optC5.value = "";
+  optC5.text = "";
   categoryInput.appendChild(categoryPlaceholder);
   categoryInput.appendChild(optC1);
   categoryInput.appendChild(optC2);
@@ -157,7 +157,7 @@ function createForm(outerSection) {
   subcategoryLabel.textContent = "Subcategory: ";
   const subcategoryInput = document.createElement("select");
   subcategoryInput.name = "subcategory";
-  subcategoryInput.required = true;
+  // subcategoryInput.required = true;
   const subcategoryPlaceholder = document.createElement("option");
   subcategoryPlaceholder.value = "";
   subcategoryPlaceholder.disabled = true;
@@ -165,20 +165,20 @@ function createForm(outerSection) {
   subcategoryPlaceholder.selected = true;
   subcategoryPlaceholder.hidden = true;
   const optSC = document.createElement("option");
-  optSC.value = "can drinks";
+  optSC.value = "Can Drinks";
   optSC.text = "Can Drinks";
   const optSC2 = document.createElement("option");
-  optSC2.value = " ";
-  optSC2.text = " ";
+  optSC2.value = "Bottle Drinks";
+  optSC2.text = "Bottle Drinks ";
   const optSC3 = document.createElement("option");
-  optSC3.value = " ";
-  optSC3.text = " ";
+  optSC3.value = "Dry Food";
+  optSC3.text = "Dry Food";
   const optSC4 = document.createElement("option");
-  optSC4.value = " ";
-  optSC4.text = " ";
+  optSC4.value = "Tinned Food";
+  optSC4.text = "Tinned Food";
   const optSC5 = document.createElement("option");
-  optSC5.value = " ";
-  optSC5.text = " ";
+  optSC5.value = "";
+  optSC5.text = "";
   subcategoryInput.appendChild(subcategoryPlaceholder);
   subcategoryInput.appendChild(optSC);
   subcategoryInput.appendChild(optSC2);
@@ -189,10 +189,10 @@ function createForm(outerSection) {
   addItemForm.appendChild(subcategoryInput);
 
   const storageLocationLabel = document.createElement("label");
-  storageLocationLabel.htmlFor = "storage-location";
+  storageLocationLabel.htmlFor = "storage_location";
   storageLocationLabel.textContent = "Storage Location: ";
   const storageLocationInput = document.createElement("select");
-  storageLocationInput.name = "storage-location";
+  storageLocationInput.name = "storage_location";
   storageLocationInput.required = true;
   const storagePlaceholder = document.createElement("option");
   storagePlaceholder.value = "";
@@ -201,19 +201,19 @@ function createForm(outerSection) {
   storagePlaceholder.selected = true;
   storagePlaceholder.hidden = true;
   const optPantry = document.createElement("option");
-  optPantry.value = "pantry";
+  optPantry.value = "Pantry";
   optPantry.text = "Pantry";
   const optDisposables = document.createElement("option");
-  optDisposables.value = "disposables";
+  optDisposables.value = "Disposables";
   optDisposables.text = "Disposables";
   const optFridge = document.createElement("option");
   optFridge.value = "Fridge";
   optFridge.text = "Fridge";
   const optFreezer = document.createElement("option");
-  optFreezer.value = "freezer";
+  optFreezer.value = "Freezer";
   optFreezer.text = "Freezer";
   const optOther = document.createElement("option");
-  optOther.value = "optOther";
+  optOther.value = "Other";
   optOther.text = "Other";
   storageLocationInput.appendChild(storagePlaceholder);
   storageLocationInput.appendChild(optPantry);
@@ -225,22 +225,23 @@ function createForm(outerSection) {
   addItemForm.appendChild(storageLocationInput);
 
   const expiryDateLabel = document.createElement("label");
-  expiryDateLabel.htmlFor = "date";
+  expiryDateLabel.htmlFor = "expiry_date";
   expiryDateLabel.textContent = "Expiry Date: ";
   const expiryDateInput = document.createElement("input");
   expiryDateInput.type = "date";
-  expiryDateInput.name = "date";
-  expiryDateInput.pattern = "d{4}-d{2}-d{2}";
+  expiryDateInput.name = "expiry_date";
+  expiryDateInput.pattern = "y{4}-m{2}-d{2}";
   expiryDateInput.required = true;
   addItemForm.appendChild(expiryDateLabel);
   addItemForm.appendChild(expiryDateInput);
 
   const commentsLabel = document.createElement("label");
-  commentsLabel.htmlFor = "text";
+  commentsLabel.htmlFor = "comments";
   commentsLabel.textContent = "Additional Comments: ";
   const commentsInput = document.createElement("textarea");
   commentsInput.maxLength = 1000;
-
+  commentsInput.name = "comments";
+  commentsInput.placeholder = "max 1000 characters";
   addItemForm.appendChild(commentsLabel);
   addItemForm.appendChild(commentsInput);
 
@@ -258,6 +259,9 @@ function createForm(outerSection) {
 
   //TODO construct form handler to send completed form data to database
   async function handleAddNewItemFormSubmit(event) {
+    //TODO: clear form and close modal on submit - no need to make a new one
+    addItemModal.style.display = "none";
+
     event.preventDefault();
     const formDataTemplate = new FormData(addItemForm);
     const formValues = Object.fromEntries(formDataTemplate);
@@ -270,7 +274,7 @@ function createForm(outerSection) {
 
     // this is to see our posted data
     console.log(
-      `${formValues.item_name} ${formValues.quantity} ${formValues.unit_type} ${formValues.category} ${formValues.subcategory}${formValues.storage_location}${formValues.expiry_Date} ${formValues.comments}`
+      `${formValues.item_name} ${formValues.quantity} ${formValues.unit_type} ${formValues.category} ${formValues.subcategory} ${formValues.storage_location} ${formValues.expiry_date} ${formValues.comments}`
     );
 
     // fetch the POST server route
@@ -281,8 +285,6 @@ function createForm(outerSection) {
       },
       body: JSON.stringify({ formValues }),
     });
-
-    //TODO: clear form and close modal on submit - no need to make a new one
   }
 }
 
