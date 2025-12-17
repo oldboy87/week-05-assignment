@@ -327,12 +327,65 @@ createTable();
 
 //TODO: ============ Tom's code ===================
 
+//THIS IS A TEST ARRAY OF OBJECTS FOR TESTING SEARCH FUNTIONALITY
+const people = [
+  {
+    name: "Fred",
+    job: "builder",
+  },
+  {
+    name: "Frump",
+    job: "builder",
+  },
+  {
+    name: "Flodd",
+    job: "builder",
+  },
+  {
+    name: "Flap",
+    job: "builder",
+  },
+  {
+    name: "Bill",
+    job: "builder",
+  },
+  {
+    name: "Bran",
+    job: "builder",
+  },
+  {
+    name: "Bronn",
+    job: "builder",
+  },
+  {
+    name: "Steve",
+    job: "builder",
+  },
+  {
+    name: "Sam",
+    job: "builder",
+  },
+];
+
 //functions for all possible button interactions goes here:
 function donate() {
   alert("To donation page");
 }
 function search() {
-  alert("Perform search");
+  let flag = false;
+  const dudeSearch = document.getElementById("search").value;
+  console.log(dudeSearch);
+  for (let i = 0; i < people.length; i++) {
+    if (dudeSearch === people[i].name) {
+      flag = true;
+    } else {
+    }
+  }
+  if (flag == true) {
+    alert("Dude was found");
+  } else {
+    alert("No such dude was found");
+  }
 }
 function add() {
   alert("Add entry to table");
@@ -427,63 +480,6 @@ function loopButtons(pageloadButtons) {
 
 loopButtons(pageloadButtons);
 
-//TODO: Testing search functionality:
-
-const people = [
-  {
-    name: "Fred",
-    job: "builder",
-  },
-  {
-    name: "Frump",
-    job: "builder",
-  },
-  {
-    name: "Flodd",
-    job: "builder",
-  },
-  {
-    name: "Flap",
-    job: "builder",
-  },
-  {
-    name: "Bill",
-    job: "builder",
-  },
-  {
-    name: "Bran",
-    job: "builder",
-  },
-  {
-    name: "Bronn",
-    job: "builder",
-  },
-  {
-    name: "Steve",
-    job: "builder",
-  },
-  {
-    name: "Sam",
-    job: "builder",
-  },
-];
-
-function searchdude() {
-  let flag = false;
-  const dudeSearch = document.getElementById("search").value;
-  console.log(dudeSearch);
-  for (let i = 0; i < people.length; i++) {
-    if (dudeSearch === people[i].name) {
-      flag = true;
-    } else {
-    }
-  }
-  if (flag == true) {
-    alert("Dude was found");
-  } else {
-    alert("No such dude was found");
-  }
-}
-
 //TODO =============END Tom's Code ==================
+
 
