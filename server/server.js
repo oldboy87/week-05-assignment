@@ -23,19 +23,19 @@ app.get("/", (req, res) => {
 //TODO: Construct GET route to obtain ALL database data
 app.get("/stock", async function (_, res) {
   const query = await db.query(
-    `SELECT date_added, item_name, quantity, unity_type, category, subcategory, storage_location, expiry_date, comments FROM inventory;`
+    `SELECT date_added, item_name, quantity, unit_type, category, subcategory, storage_location, expiry_date, comments FROM inventory;`
   );
   console.log(query);
   res.json(query.rows);
 });
 
 //TODO: Construct POST route to post a new item to the database
-app.post("/add_item", (req, _) => {
+app.post("/add_item", async function (req, _) {
   const addStock = req.body.formValues;
   console.log(addStock);
 
-  const query = db.query(
-    `INSERT INTO inventory (item_name, quantity, unity_type, category, subcategory, storage_location, expiry_date, comments) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+  const query = await db.query(
+    `INSERT INTO inventory (item_name, quantity, unit_type, category, subcategory, storage_location, expiry_date, comments) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
     [
       addStock.item_name,
       addStock.quantity,
@@ -53,10 +53,10 @@ app.post("/add_item", (req, _) => {
 });
 
 //TODO: Construct a delete route
-app.post("/delete_stock", (req, _) => {
+app.post("/delete_stock", async function (req, _) {
   const item_name = req.body.item_name;
 
-  const query = db.query(`DELETE from inventory WHERE item_name=$1`, [
+  const query = await db.query(`DELETE from inventory WHERE item_name=$1`, [
     item_name,
   ]);
   console.log(query);
@@ -65,11 +65,11 @@ app.post("/delete_stock", (req, _) => {
 });
 
 //TODO: Create an Update Stock route
-app.post("/update_stock", (req, _) => {
+app.post("/update_stock", async function (req, _) {
   const newQuantity = req.body.newQuantity;
   const item_name = req.body.item_name;
 
-  const query = db.query(
+  const query = await db.query(
     `UPDATE inventory SET quantity=$1 WHERE item_name=$2`,
     [newQuantity, item_name]
   );
