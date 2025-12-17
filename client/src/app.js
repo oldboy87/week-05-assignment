@@ -1,18 +1,14 @@
 console.log("Hello World!");
 
 //!temp button
-const addItemButton = document.createElement("button");
-addItemButton.textContent = "add item";
-document.body.appendChild(addItemButton);
-
-//const addItemButton = document.getElementById("add");
+const addItemButton = document.getElementById("add");
 
 // TODO: Create the modal and the form once the button has been clicked
 addItemButton.addEventListener("click", () => {
-  const submitSound = document.createElement("audio");
-  submitSound.src = "client/public/audio/add-popup-swoosh.wav";
-  submitSound.volume = 0.5;
-  submitSound.play();
+  // const submitSound = document.createElement("audio");
+  // submitSound.src = "client/public/audio/add-popup-swoosh.wav";
+  // submitSound.volume = 0.5;
+  // submitSound.play();
 
   //construct modal
   const addItemModal = document.createElement("div");
@@ -61,7 +57,7 @@ function createForm(outerSection) {
 
   //add in the inputs and labels for form
   const itemNameLabel = document.createElement("label");
-  itemNameLabel.htmlFor = "item-name";
+  itemNameLabel.htmlFor = "item_name";
   itemNameLabel.textContent = "Item Name: ";
   const itemNameInput = document.createElement("input");
   itemNameInput.name = "item-name";
@@ -84,12 +80,18 @@ function createForm(outerSection) {
   addItemForm.appendChild(quantityInput);
 
   const unitTypeLabel = document.createElement("label");
-  unitTypeLabel.htmlFor = "unit-type";
+  unitTypeLabel.htmlFor = "unit_type";
   unitTypeLabel.textContent = "Unit Type: ";
   const unitTypeInput = document.createElement("select");
   unitTypeInput.name = "unit-type";
   unitTypeInput.required = true;
   unitTypeInput.placeholder = "unit";
+  const unitTypePlaceholder = document.createElement("option");
+  unitTypePlaceholder.value = "";
+  unitTypePlaceholder.disabled = true;
+  unitTypePlaceholder.textContent = "Select Option";
+  unitTypePlaceholder.selected = true;
+  unitTypePlaceholder.hidden = true;
   const optG = document.createElement("option");
   optG.value = "grams";
   optG.text = "grams";
@@ -105,8 +107,9 @@ function createForm(outerSection) {
   const optItems = document.createElement("option");
   optItems.value = "items";
   optItems.text = "items";
+  unitTypeInput.appendChild(unitTypePlaceholder);
   unitTypeInput.appendChild(optG);
-  unitTypeInput.appendChild(disposables);
+  unitTypeInput.appendChild(optKG);
   unitTypeInput.appendChild(optML);
   unitTypeInput.appendChild(optL);
   unitTypeInput.appendChild(optItems);
@@ -119,9 +122,15 @@ function createForm(outerSection) {
   const categoryInput = document.createElement("select");
   categoryInput.name = "category";
   categoryInput.required = true;
+  const categoryPlaceholder = document.createElement("option");
+  categoryPlaceholder.value = "";
+  categoryPlaceholder.disabled = true;
+  categoryPlaceholder.textContent = "Select Option";
+  categoryPlaceholder.selected = true;
+  categoryPlaceholder.hidden = true;
   const optC1 = document.createElement("option");
-  optC1.value = " ";
-  optC1.text = " ";
+  optC1.value = "beverages";
+  optC1.text = "Beverages";
   const optC2 = document.createElement("option");
   optC2.value = " ";
   optC2.text = " ";
@@ -134,19 +143,30 @@ function createForm(outerSection) {
   const optC5 = document.createElement("option");
   optC5.value = " ";
   optC5.text = " ";
-  unitTypeInput.appendChild(optC1);
-  unitTypeInput.appendChild(optC2);
-  unitTypeInput.appendChild(optC3);
-  unitTypeInput.appendChild(optC4);
-  unitTypeInput.appendChild(optC5);
-  addItemForm.appendChild(unitTypeLabel);
-  addItemForm.appendChild(unitTypeInput);
+  categoryInput.appendChild(categoryPlaceholder);
+  categoryInput.appendChild(optC1);
+  categoryInput.appendChild(optC2);
+  categoryInput.appendChild(optC3);
+  categoryInput.appendChild(optC4);
+  categoryInput.appendChild(optC5);
+  addItemForm.appendChild(categoryLabel);
+  addItemForm.appendChild(categoryInput);
 
   const subcategoryLabel = document.createElement("label");
-  const subcategoryInput = document.createElement("input");
+  subcategoryLabel.htmlFor = "subcategory";
+  subcategoryLabel.textContent = "Subcategory: ";
+  const subcategoryInput = document.createElement("select");
+  subcategoryInput.name = "subcategory";
+  subcategoryInput.required = true;
+  const subcategoryPlaceholder = document.createElement("option");
+  subcategoryPlaceholder.value = "";
+  subcategoryPlaceholder.disabled = true;
+  subcategoryPlaceholder.textContent = "Select Option";
+  subcategoryPlaceholder.selected = true;
+  subcategoryPlaceholder.hidden = true;
   const optSC = document.createElement("option");
-  optSC.value = " ";
-  optSC.text = " ";
+  optSC.value = "can drinks";
+  optSC.text = "Can Drinks";
   const optSC2 = document.createElement("option");
   optSC2.value = " ";
   optSC2.text = " ";
@@ -159,19 +179,27 @@ function createForm(outerSection) {
   const optSC5 = document.createElement("option");
   optSC5.value = " ";
   optSC5.text = " ";
-  unitTypeInput.appendChild(optSC);
-  unitTypeInput.appendChild(optSC2);
-  unitTypeInput.appendChild(optSC3);
-  unitTypeInput.appendChild(optSC4);
-  unitTypeInput.appendChild(optSC5);
-  addItemForm.appendChild(unitTypeLabel);
-  addItemForm.appendChild(unitTypeInput);
-
+  subcategoryInput.appendChild(subcategoryPlaceholder);
+  subcategoryInput.appendChild(optSC);
+  subcategoryInput.appendChild(optSC2);
+  subcategoryInput.appendChild(optSC3);
+  subcategoryInput.appendChild(optSC4);
+  subcategoryInput.appendChild(optSC5);
   addItemForm.appendChild(subcategoryLabel);
   addItemForm.appendChild(subcategoryInput);
 
   const storageLocationLabel = document.createElement("label");
-  const storageLocationInput = document.createElement("input");
+  storageLocationLabel.htmlFor = "storage-location";
+  storageLocationLabel.textContent = "Storage Location: ";
+  const storageLocationInput = document.createElement("select");
+  storageLocationInput.name = "storage-location";
+  storageLocationInput.required = true;
+  const storagePlaceholder = document.createElement("option");
+  storagePlaceholder.value = "";
+  storagePlaceholder.disabled = true;
+  storagePlaceholder.textContent = "Select Option";
+  storagePlaceholder.selected = true;
+  storagePlaceholder.hidden = true;
   const optPantry = document.createElement("option");
   optPantry.value = "pantry";
   optPantry.text = "Pantry";
@@ -187,6 +215,7 @@ function createForm(outerSection) {
   const optOther = document.createElement("option");
   optOther.value = "optOther";
   optOther.text = "Other";
+  storageLocationInput.appendChild(storagePlaceholder);
   storageLocationInput.appendChild(optPantry);
   storageLocationInput.appendChild(optDisposables);
   storageLocationInput.appendChild(optFridge);
@@ -197,14 +226,14 @@ function createForm(outerSection) {
 
   const expiryDateLabel = document.createElement("label");
   expiryDateLabel.htmlFor = "date";
-  expiryDateLabel.textContent = "Enter a date (YYYY-MM-DD)";
+  expiryDateLabel.textContent = "Expiry Date: ";
   const expiryDateInput = document.createElement("input");
   expiryDateInput.type = "date";
   expiryDateInput.name = "date";
   expiryDateInput.pattern = "d{4}-d{2}-d{2}";
   expiryDateInput.required = true;
-  addItemForm.appendChild(storageLocationLabel);
-  addItemForm.appendChild(storageLocationInput);
+  addItemForm.appendChild(expiryDateLabel);
+  addItemForm.appendChild(expiryDateInput);
 
   const commentsLabel = document.createElement("label");
   commentsLabel.htmlFor = "text";
@@ -215,40 +244,46 @@ function createForm(outerSection) {
   addItemForm.appendChild(commentsLabel);
   addItemForm.appendChild(commentsInput);
 
+  const submitForm = document.createElement("button");
+  submitForm.type = "submit";
+  submitForm.textContent = "Submit";
+  addItemForm.appendChild(submitForm);
+
   //append form to form section
   formSection.appendChild(addItemForm);
 
   outerSection.appendChild(formSection);
 
   addItemForm.addEventListener("submit", handleAddNewItemFormSubmit);
-}
 
-async function handleAddNewItemFormSubmit(event) {
-  event.preventDefault();
-  const formDataTemplate = new FormData(addItemForm);
-  const formValues = Object.fromEntries(formDataTemplate);
+  //TODO construct form handler to send completed form data to database
+  async function handleAddNewItemFormSubmit(event) {
+    event.preventDefault();
+    const formDataTemplate = new FormData(addItemForm);
+    const formValues = Object.fromEntries(formDataTemplate);
 
-  //sound on click
-  //   const submitSound = document.createElement("audio");
-  //   submitSound.src = "";
-  //   submitSound.volume = 0.5;
-  //   submitSound.play();
+    //sound on click
+    //   const submitSound = document.createElement("audio");
+    //   submitSound.src = "";
+    //   submitSound.volume = 0.5;
+    //   submitSound.play();
 
-  // this is to see our posted data
-  console.log(
-    `${formValues.item_name} ${formValues.quantity} ${formValues.unit_type} ${formValues.category} ${formValues.subcategory}${formValues.storage_location}${formValues.expiry_Date} ${formValues.comments}`
-  );
+    // this is to see our posted data
+    console.log(
+      `${formValues.item_name} ${formValues.quantity} ${formValues.unit_type} ${formValues.category} ${formValues.subcategory}${formValues.storage_location}${formValues.expiry_Date} ${formValues.comments}`
+    );
 
-  // fetch the POST server route
-  fetch("http://localhost:8080/add_item", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ formValues }),
-  });
+    // fetch the POST server route
+    fetch("http://localhost:8080/add_item", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ formValues }),
+    });
 
-  //TODO: clear form and close modal on submit - no need to make a new one
+    //TODO: clear form and close modal on submit - no need to make a new one
+  }
 }
 
 //! ---------------------------------- NENE START ---------------------------------- //
@@ -269,13 +304,13 @@ const columnName = [
 
 async function createTable(columns) {
   const itemData = await getData();
-  document.getElementById("table-container");
-  tableContainer.appendChild(table);
+  const tableContainer = document.getElementById("inventory-table");
 
   const table = document.createElement("table");
   console.log(table);
   table.style.border = "1px solid";
 
+  tableContainer.appendChild(table);
   // Create THEAD
   const thead = table.createTHead();
   const headerRow = thead.insertRow();
@@ -321,7 +356,7 @@ async function getData(url) {
   return data;
 }
 
-createTable();
+createTable(columnName);
 
 //! ---------------------------------- NENE END ---------------------------------- //
 
@@ -373,7 +408,8 @@ function donate() {
 }
 function search() {
   let flag = false;
-  const dudeSearch = document.getElementById("search").value;
+  const dudeSearch = document.getElementById("searchbar").value;
+  console.log("dudesearch:");
   console.log(dudeSearch);
   for (let i = 0; i < people.length; i++) {
     if (dudeSearch === people[i].name) {
@@ -419,10 +455,6 @@ const pageloadButtons = [
     id: "filter",
     func: filter,
   },
-  {
-    id: "searchdude",
-    func: searchdude,
-  },
 ];
 
 //buttons added to the page with DOM will be added here:
@@ -458,7 +490,7 @@ console.log(pageloadButtons.length);
 
 function createButton(id, func) {
   //TODO: container needs to be assigned to div with corresponding id. For testing purposes, this is in the body.
-  const container = document.body;
+  const container = document.getElementById(id);
   const button = document.createElement("button");
   button.setAttribute("class", "button");
   button.setAttribute("id", id);
@@ -481,5 +513,3 @@ function loopButtons(pageloadButtons) {
 loopButtons(pageloadButtons);
 
 //TODO =============END Tom's Code ==================
-
-
