@@ -293,6 +293,7 @@ function createForm(outerSection) {
 
     // fetch the POST server route
     fetch("https://pantrypal-server-yyp8.onrender.com/add_item", {
+      // fetch("http://localhost:8080/add_item", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -527,6 +528,7 @@ async function getData() {
   //=========rory// removed unused param
   const response = await fetch(
     "https://pantrypal-server-yyp8.onrender.com/stock"
+    // "http://localhost:8080/stock"
   );
   console.log(response);
   const data = await response.json();
