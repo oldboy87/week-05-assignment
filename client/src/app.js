@@ -475,6 +475,7 @@ function createTable(columns) {
   console.log(table);
   table.style.border = "1px solid black";
   table.style.width = "100%";
+  table.id = "table";
 
   tableContainer.appendChild(table); //======rory// (removed duplicate)
 
@@ -482,9 +483,12 @@ function createTable(columns) {
   const thead = table.createTHead();
   const headerRow = thead.insertRow();
 
-  columns.forEach((columnName) => {
+  columns.forEach((columnName, index) => {
     const th = document.createElement("th");
     th.textContent = columnName;
+    th.id = index;
+    console.log("Column:");
+    console.log(index);
     th.style.border = "1px solid black";
     th.style.padding = "8px";
     headerRow.appendChild(th);
@@ -494,11 +498,17 @@ function createTable(columns) {
   const tbody = table.createTBody();
 
   populateRows(tbody, itemData); //======populate the table===rory//
+
+  console.log("Specific column:");
+  const testid = document.getElementById("1");
+  console.table(testid.innerText);
 }
 
 function populateRows(tbody, data) {
-  data.forEach((item) => {
+  data.forEach((item, index) => {
     const row = tbody.insertRow();
+    const rowindex = index;
+    row.id = rowindex;
 
     const values = [
       item.edit, // ==============tom//
@@ -514,17 +524,34 @@ function populateRows(tbody, data) {
       item.comments,
     ];
 
-    values.forEach((value) => {
+    values.forEach((value, index) => {
       const cell = row.insertCell();
+      console.log(index);
       cell.textContent = value ?? "";
-      console.log("Cell value:");
-      console.log(value);
+      cell.id = `${rowindex}-${index}`;
+      console.log("Cell:");
+      console.log(index);
+      console.log(cell);
       //===================================rory// prevents "undefined"
       cell.style.border = "1px solid black";
       cell.style.padding = "6px";
+      // if (index == 0) {
+      //   usedrows[index].column = index;
+      // }
     });
+    console.log("Row:");
+    console.log(row);
   });
 }
+
+let usedrows = [
+  {
+    column: 0,
+    row: 0,
+  },
+];
+
+// loopButtons(dynamicButtons)
 
 async function getData() {
   //=========rory// removed unused param
