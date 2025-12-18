@@ -360,35 +360,40 @@ function filter() {
 
 //all buttons that need to be displayed and working when loading a new session goes in this array:
 const pageloadButtons = [
-  {
-    id: "donate",
-    func: donate,
-  },
+  // {
+  //   id: "donate",
+  //   func: donate,
+  //   image: "./assets/icons/donatelogo.gif",
+  // },
   {
     id: "search",
     func: search,
+    image: "./assets/icons/Search.png",
   },
   {
     id: "add",
     func: add,
+    image: "./assets/icons/add_circle.png",
   },
   {
     id: "edit",
     func: edit,
+    image: "./assets/icons/Edit.png",
   },
   {
     id: "filter",
     func: filter,
+    image: "./assets/icons/Filter.png",
   },
 ];
 
 //buttons added to the page with DOM will be added here:
 //TODO: Need to consider if there will only be one set of new buttons displayed at any given time. If so, this array of objects can be emptied and re-populated. If not, can be additive (and items removed )
 const dynamicButtons = [
-  {
-    id: "donate",
-    func: donate,
-  },
+  // {
+  //   id: "donate",
+  //   func: donate,
+  // },
   {
     id: "search",
     func: search,
