@@ -71,7 +71,7 @@ app.post("/update_stock", async function (req, _) {
   console.log(updateStock);
 
   const query = await db.query(
-    `UPDATE inventory SET quantity=$1 unit_size= $2, unit_type=$3, category=$4, storage_location=$5, expiry_date=$6, comments=$7) WHERE item_name=$8`,
+    `UPDATE inventory SET quantity=$1, unit_size= $2, unit_type=$3, category=$4, storage_location=$5, expiry_date=$6, comments=$7 WHERE item_name=$8`,
     [
       updateStock.item_name,
       updateStock.quantity,
