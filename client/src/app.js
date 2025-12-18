@@ -300,7 +300,7 @@ console.log("Database Values:");
 console.log(databaseValues);
 console.log(databaseValues.length);
 
-const foundItems = [];
+const foundItems = await getData();
 
 //TODO: Need to clear previous search entries
 
@@ -343,22 +343,27 @@ const pageloadButtons = [
   {
     id: "donate",
     func: donate,
+    image: null,
   },
   {
     id: "search",
     func: search,
+    image: "./public/assets/icons/Search.png",
   },
   {
     id: "add",
     func: add,
+    image: "./public/assets/icons/add_circle.png",
   },
-  {
-    id: "edit",
-    func: edit,
-  },
+  // {
+  //   id: "edit",
+  //   func: edit,
+  //   image: "./public/assets/icons/Edit.png",
+  // },
   {
     id: "filter",
     func: filter,
+    image: "./public/assets/icons/Filter.png",
   },
 ];
 
@@ -366,24 +371,9 @@ const pageloadButtons = [
 //TODO: Need to consider if there will only be one set of new buttons displayed at any given time. If so, this array of objects can be emptied and re-populated. If not, can be additive (and items removed )
 const dynamicButtons = [
   {
-    id: "donate",
-    func: donate,
-  },
-  {
-    id: "search",
-    func: search,
-  },
-  {
-    id: "add",
-    func: add,
-  },
-  {
     id: "edit",
     func: edit,
-  },
-  {
-    id: "filter",
-    func: filter,
+    image: "./public/assets/icons/Edit.png",
   },
 ];
 
@@ -402,25 +392,52 @@ function createSearchBar() {
   container.appendChild(searchbar);
 }
 
-function createButton(id, func) {
+function createButton(id, func, img) {
   //TODO: container needs to be assigned to div with corresponding id. For testing purposes, this is in the body.
   const container = document.getElementById(id);
   const button = document.createElement("button");
   button.setAttribute("class", "button");
   button.setAttribute("id", id);
   button.addEventListener("click", func);
-  button.innerHTML = id;
   container.appendChild(button);
+  if (img == null) {
+    button.innerHTML = id;
+  } else {
+    const image = document.createElement("img");
+    image.setAttribute("src", img);
+    image.setAttribute("alt", `${id} button`);
+    button.appendChild(image);
+  }
 }
+
+// button.innerHTML = img;
+
+// const container = document.getElementById(id);
+//   const button = document.createElement("button");
+//   const image = document.createElement("img");
+//   button.setAttribute("class", "button");
+//   button.setAttribute("id", id);
+//   button.addEventListener("click", func);
+//   console.log("Image:");
+//   console.log(img);
+//   image.setAttribute("src", img);
+//   image.setAttribute("alt", `${id} button`);
+//   container.appendChild(button);
+//   button.appendChild(image);
+
+//   // button.innerHTML = img;
+// }
 
 function loopButtons(pageloadButtons) {
   for (let i = 0; i <= pageloadButtons.length - 1; i++) {
     const id = pageloadButtons[i].id;
     const func = pageloadButtons[i].func;
+    const img = pageloadButtons[i].image;
     console.log(id);
     console.log(func);
+    console.log(img);
     console.log(i);
-    createButton(id, func);
+    createButton(id, func, img);
   }
 }
 
@@ -435,10 +452,12 @@ console.log("Inventory table loading..."); //======rory// replaced Promise
 // ** DOM manipulation --> INVENTORY TABLE **
 //column header titles
 const columnName = [
+  "EDIT", // ==============tom//
   "NAME",
   "DATE ADDED",
   "QUANTITY",
   "UNITTYPE",
+  "UNITSIZE", // ==============tom//
   "CATEGORY",
   "SUBCATEGORY",
   "LOCATION",
@@ -482,10 +501,12 @@ function populateRows(tbody, data) {
     const row = tbody.insertRow();
 
     const values = [
+      item.edit, // ==============tom//
       item.item_name, //===============rory//
       item.date_added,
       item.quantity,
       item.unit_type,
+      item.unit_size, // ==============tom//
       item.category,
       item.subcategory,
       item.storage_location, //===============================rory//
@@ -495,7 +516,10 @@ function populateRows(tbody, data) {
 
     values.forEach((value) => {
       const cell = row.insertCell();
-      cell.textContent = value ?? ""; //===================================rory// prevents "undefined"
+      cell.textContent = value ?? "";
+      console.log("Cell value:");
+      console.log(value);
+      //===================================rory// prevents "undefined"
       cell.style.border = "1px solid black";
       cell.style.padding = "6px";
     });
