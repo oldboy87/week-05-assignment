@@ -292,7 +292,7 @@ function createForm(outerSection) {
     );
 
     // fetch the POST server route
-    fetch("http://localhost:8080/add_item", {
+    fetch("https://pantrypal-server-yyp8.onrender.com/add_item", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -314,7 +314,7 @@ console.log("Database Values:");
 console.log(databaseValues);
 console.log(databaseValues.length);
 
-const foundItems = await getData();
+const foundItems = [];
 
 //TODO: Need to clear previous search entries
 
@@ -323,12 +323,9 @@ function search() {
   //   const searchvalue = document.getElementById("search").value;
 
   //! inserted code
+  const tableContainer = document.getElementById("inventory-table"); //======rory// fixed container reference
 
-  const reloadData = async () => {
-    await getData();
-  };
-  reloadData();
-
+  tableContainer.innerHTML = null;
   //! code insert ended
 
   const searchvalue = document.querySelector(".searchbar").value;
@@ -365,27 +362,22 @@ const pageloadButtons = [
   {
     id: "donate",
     func: donate,
-    image: null,
   },
   {
     id: "search",
     func: search,
-    image: "./public/assets/icons/Search.png",
   },
   {
     id: "add",
     func: add,
-    image: "./public/assets/icons/add_circle.png",
   },
-  // {
-  //   id: "edit",
-  //   func: edit,
-  //   image: "./public/assets/icons/Edit.png",
-  // },
+  {
+    id: "edit",
+    func: edit,
+  },
   {
     id: "filter",
     func: filter,
-    image: "./public/assets/icons/Filter.png",
   },
 ];
 
@@ -393,9 +385,24 @@ const pageloadButtons = [
 //TODO: Need to consider if there will only be one set of new buttons displayed at any given time. If so, this array of objects can be emptied and re-populated. If not, can be additive (and items removed )
 const dynamicButtons = [
   {
+    id: "donate",
+    func: donate,
+  },
+  {
+    id: "search",
+    func: search,
+  },
+  {
+    id: "add",
+    func: add,
+  },
+  {
     id: "edit",
     func: edit,
-    image: "./public/assets/icons/Edit.png",
+  },
+  {
+    id: "filter",
+    func: filter,
   },
 ];
 
@@ -414,52 +421,25 @@ function createSearchBar() {
   container.appendChild(searchbar);
 }
 
-function createButton(id, func, img) {
+function createButton(id, func) {
   //TODO: container needs to be assigned to div with corresponding id. For testing purposes, this is in the body.
   const container = document.getElementById(id);
   const button = document.createElement("button");
   button.setAttribute("class", "button");
   button.setAttribute("id", id);
   button.addEventListener("click", func);
+  button.innerHTML = id;
   container.appendChild(button);
-  if (img == null) {
-    button.innerHTML = id;
-  } else {
-    const image = document.createElement("img");
-    image.setAttribute("src", img);
-    image.setAttribute("alt", `${id} button`);
-    button.appendChild(image);
-  }
 }
-
-// button.innerHTML = img;
-
-// const container = document.getElementById(id);
-//   const button = document.createElement("button");
-//   const image = document.createElement("img");
-//   button.setAttribute("class", "button");
-//   button.setAttribute("id", id);
-//   button.addEventListener("click", func);
-//   console.log("Image:");
-//   console.log(img);
-//   image.setAttribute("src", img);
-//   image.setAttribute("alt", `${id} button`);
-//   container.appendChild(button);
-//   button.appendChild(image);
-
-//   // button.innerHTML = img;
-// }
 
 function loopButtons(pageloadButtons) {
   for (let i = 0; i <= pageloadButtons.length - 1; i++) {
     const id = pageloadButtons[i].id;
     const func = pageloadButtons[i].func;
-    const img = pageloadButtons[i].image;
     console.log(id);
     console.log(func);
-    console.log(img);
     console.log(i);
-    createButton(id, func, img);
+    createButton(id, func);
   }
 }
 
@@ -474,13 +454,11 @@ console.log("Inventory table loading..."); //======rory// replaced Promise
 // ** DOM manipulation --> INVENTORY TABLE **
 //column header titles
 const columnName = [
-  "EDIT", // ==============tom//
   "NAME",
   "DATE ADDED",
   "QUANTITY",
   "UNITSIZE",
   "UNITTYPE",
-  "UNITSIZE", // ==============tom//
   "CATEGORY",
   "SUBCATEGORY",
   "LOCATION",
@@ -498,7 +476,6 @@ function createTable(columns) {
   console.log(table);
   table.style.border = "1px solid black";
   table.style.width = "100%";
-  table.id = "table";
 
   tableContainer.appendChild(table); //======rory// (removed duplicate)
 
@@ -506,12 +483,9 @@ function createTable(columns) {
   const thead = table.createTHead();
   const headerRow = thead.insertRow();
 
-  columns.forEach((columnName, index) => {
+  columns.forEach((columnName) => {
     const th = document.createElement("th");
     th.textContent = columnName;
-    th.id = index;
-    console.log("Column:");
-    console.log(index);
     th.style.border = "1px solid black";
     th.style.padding = "8px";
     headerRow.appendChild(th);
@@ -521,26 +495,18 @@ function createTable(columns) {
   const tbody = table.createTBody();
 
   populateRows(tbody, itemData); //======populate the table===rory//
-
-  console.log("Specific column:");
-  const testid = document.getElementById("1");
-  console.table(testid.innerText);
 }
 
 function populateRows(tbody, data) {
-  data.forEach((item, index) => {
+  data.forEach((item) => {
     const row = tbody.insertRow();
-    const rowindex = index;
-    row.id = rowindex;
 
     const values = [
-      item.edit, // ==============tom//
       item.item_name, //===============rory//
       item.date_added,
       item.quantity,
       item.unit_size,
       item.unit_type,
-      item.unit_size, // ==============tom//
       item.category,
       item.subcategory,
       item.storage_location, //===============================rory//
@@ -548,38 +514,20 @@ function populateRows(tbody, data) {
       item.comments,
     ];
 
-    values.forEach((value, index) => {
+    values.forEach((value) => {
       const cell = row.insertCell();
-      console.log(index);
-      cell.textContent = value ?? "";
-      cell.id = `${rowindex}-${index}`;
-      console.log("Cell:");
-      console.log(index);
-      console.log(cell);
-      //===================================rory// prevents "undefined"
+      cell.textContent = value ?? ""; //===================================rory// prevents "undefined"
       cell.style.border = "1px solid black";
       cell.style.padding = "6px";
-      // if (index == 0) {
-      //   usedrows[index].column = index;
-      // }
     });
-    console.log("Row:");
-    console.log(row);
   });
 }
 
-let usedrows = [
-  {
-    column: 0,
-    row: 0,
-  },
-];
-
-// loopButtons(dynamicButtons)
-
 async function getData() {
   //=========rory// removed unused param
-  const response = await fetch("http://localhost:8080/stock");
+  const response = await fetch(
+    "https://pantrypal-server-yyp8.onrender.com/stock"
+  );
   console.log(response);
   const data = await response.json();
   console.log(data);

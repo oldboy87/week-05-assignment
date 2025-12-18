@@ -67,14 +67,24 @@ app.post("/delete_stock", async function (req, _) {
 
 //TODO: Create an Update Stock route
 app.post("/update_stock", async function (req, _) {
-  const newQuantity = req.body.newQuantity;
-  const item_name = req.body.item_name;
+  const updateStock = req.body.updateFormValues;
+  console.log(updateStock);
 
   const query = await db.query(
-    `UPDATE inventory SET quantity=$1 WHERE item_name=$2`,
-    [newQuantity, item_name]
+    `UPDATE inventory SET quantity=$1 unit_size= $2, unit_type=$3, category=$4, storage_location=$5, expiry_date=$6, comments=$7) WHERE item_name=$8`,
+    [
+      updateStock.item_name,
+      updateStock.quantity,
+      updateStock.unit_size,
+      updateStock.unit_type,
+      updateStock.category,
+      // addStock.subcategory, //! Requires some additional specificity that we don't have at the moment
+      updateStock.storage_location,
+      updateStock.expiry_date,
+      updateStock.comments,
+    ]
   );
   console.log(query);
 
-  _.json({ status: "success", value: newQuantity, item_name });
+  _.json({ status: "success", value: updateStock });
 });
