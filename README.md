@@ -1,4 +1,4 @@
-Hello!
+Tom says Hello!
 
 Annabel says Hi!
 
@@ -48,11 +48,11 @@ Express.js, pg, cors...
 
 ## Instructions on how to run your app:
 
-...
+Navigate to the client link, use searchbar to find relevant item.
 
 ## Lighthouse report:
 
-...
+Please see 'Lighthous report.jpg'
 
 ## Reflections:
 
@@ -67,10 +67,13 @@ Detailing useful external sources that helped you complete the assignment (e.g Y
 Describing errors or bugs you encountered while completing your assignment.
 
 <!-- RORY -->
+
 <!-- ANNABEL -->
+
 <!-- TOM -->
+
 <!-- NENE -->
 
 ## REFERENCES
 
-Third-party APIs, CSS resets, icons, images...
+All assets used in this project were created by Rory. We used no external APIs or packages beyond cors/express/vite/pg/dotenv
