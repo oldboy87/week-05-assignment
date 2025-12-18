@@ -184,4 +184,6 @@ header img {
 .formSection form textarea {
   font-size: 1.5vw;
   max-width: 100%;
+  min-width: 100%;
+  min-height: 5vh;
 }

@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
 //TODO: Construct GET route to obtain ALL database data
 app.get("/stock", async function (_, res) {
   const query = await db.query(
-    `SELECT date_added, item_name, quantity, unit_type, category, subcategory, storage_location, expiry_date, comments FROM inventory;`
+    `SELECT date_added, item_name, quantity, unit_size, unit_type, category, storage_location, expiry_date, comments FROM inventory;`
   );
   console.log(query);
   res.json(query.rows);
@@ -35,13 +35,14 @@ app.post("/add_item", async function (req, _) {
   console.log(addStock);
 
   const query = await db.query(
-    `INSERT INTO inventory (item_name, quantity, unit_type, category, subcategory, storage_location, expiry_date, comments) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+    `INSERT INTO inventory (item_name, quantity, unit_size, unit_type, category, storage_location, expiry_date, comments) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
     [
       addStock.item_name,
       addStock.quantity,
+      addStock.unit_size,
       addStock.unit_type,
       addStock.category,
-      addStock.subcategory,
+      // addStock.subcategory, //! Requires some additional specificity that we don't have at the moment
       addStock.storage_location,
       addStock.expiry_date,
       addStock.comments,

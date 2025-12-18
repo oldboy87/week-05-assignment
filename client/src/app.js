@@ -4,7 +4,7 @@ console.log("Hello World!");
 const addItemButton = document.getElementById("add");
 
 // TODO: Create the modal and the form once the button has been clicked
-addItemButton.addEventListener("click", () => {
+function add() {
   // const submitSound = document.createElement("audio");
   // submitSound.src = "client/public/audio/add-popup-swoosh.wav";
   // submitSound.volume = 0.5;
@@ -44,7 +44,7 @@ addItemButton.addEventListener("click", () => {
       addItemModal.style.display = "none";
     }
   });
-});
+}
 
 function createForm(outerSection) {
   //construct section for form to nest in
@@ -79,6 +79,18 @@ function createForm(outerSection) {
   addItemForm.appendChild(quantityLabel);
   addItemForm.appendChild(quantityInput);
 
+  const unitSizeLabel = document.createElement("label");
+  unitSizeLabel.htmlFor = "unit_size";
+  unitSizeLabel.textContent = "Unit Size: ";
+  const unitSizeInput = document.createElement("input");
+  unitSizeInput.name = "unit_size";
+  unitSizeInput.placeholder = "0";
+  unitSizeInput.type = "number";
+  unitSizeInput.min = "1";
+  unitSizeInput.required = true;
+  addItemForm.appendChild(unitSizeLabel);
+  addItemForm.appendChild(unitSizeInput);
+
   const unitTypeLabel = document.createElement("label");
   unitTypeLabel.htmlFor = "unit_type";
   unitTypeLabel.textContent = "Unit Type: ";
@@ -104,15 +116,12 @@ function createForm(outerSection) {
   const optL = document.createElement("option");
   optL.value = "L";
   optL.text = "litres";
-  const optItems = document.createElement("option");
-  optItems.value = "items";
-  optItems.text = "items";
   unitTypeInput.appendChild(unitTypePlaceholder);
   unitTypeInput.appendChild(optG);
   unitTypeInput.appendChild(optKG);
   unitTypeInput.appendChild(optML);
   unitTypeInput.appendChild(optL);
-  unitTypeInput.appendChild(optItems);
+
   addItemForm.appendChild(unitTypeLabel);
   addItemForm.appendChild(unitTypeInput);
 
@@ -132,61 +141,66 @@ function createForm(outerSection) {
   optC1.value = "Beverages";
   optC1.text = "Beverages";
   const optC2 = document.createElement("option");
-  optC2.value = "Food";
-  optC2.text = "Food";
+  optC2.value = "Dry Goods";
+  optC2.text = "Dry Goods";
   const optC3 = document.createElement("option");
-  optC3.value = "Cleaning Supplies";
-  optC3.text = "Cleaning Supplies";
+  optC3.value = "Perishable";
+  optC3.text = "Perishable";
   const optC4 = document.createElement("option");
-  optC4.value = "Personal Hygiene";
-  optC4.text = "Personal Hygiene";
+  optC4.value = "Canned Goods";
+  optC4.text = "Canned Goods";
   const optC5 = document.createElement("option");
-  optC5.value = "";
-  optC5.text = "";
+  optC5.value = "Cleaning Supplies";
+  optC5.text = "Cleaning Supplies";
+  const optC6 = document.createElement("option");
+  optC6.value = "Personal Hygiene";
+  optC6.text = "Personal Hygiene";
   categoryInput.appendChild(categoryPlaceholder);
   categoryInput.appendChild(optC1);
   categoryInput.appendChild(optC2);
   categoryInput.appendChild(optC3);
   categoryInput.appendChild(optC4);
   categoryInput.appendChild(optC5);
+  categoryInput.appendChild(optC6);
   addItemForm.appendChild(categoryLabel);
   addItemForm.appendChild(categoryInput);
 
-  const subcategoryLabel = document.createElement("label");
-  subcategoryLabel.htmlFor = "subcategory";
-  subcategoryLabel.textContent = "Subcategory: ";
-  const subcategoryInput = document.createElement("select");
-  subcategoryInput.name = "subcategory";
-  // subcategoryInput.required = true;
-  const subcategoryPlaceholder = document.createElement("option");
-  subcategoryPlaceholder.value = "";
-  subcategoryPlaceholder.disabled = true;
-  subcategoryPlaceholder.textContent = "Select Option";
-  subcategoryPlaceholder.selected = true;
-  subcategoryPlaceholder.hidden = true;
-  const optSC = document.createElement("option");
-  optSC.value = "Can Drinks";
-  optSC.text = "Can Drinks";
-  const optSC2 = document.createElement("option");
-  optSC2.value = "Bottle Drinks";
-  optSC2.text = "Bottle Drinks ";
-  const optSC3 = document.createElement("option");
-  optSC3.value = "Dry Food";
-  optSC3.text = "Dry Food";
-  const optSC4 = document.createElement("option");
-  optSC4.value = "Tinned Food";
-  optSC4.text = "Tinned Food";
-  const optSC5 = document.createElement("option");
-  optSC5.value = "";
-  optSC5.text = "";
-  subcategoryInput.appendChild(subcategoryPlaceholder);
-  subcategoryInput.appendChild(optSC);
-  subcategoryInput.appendChild(optSC2);
-  subcategoryInput.appendChild(optSC3);
-  subcategoryInput.appendChild(optSC4);
-  subcategoryInput.appendChild(optSC5);
-  addItemForm.appendChild(subcategoryLabel);
-  addItemForm.appendChild(subcategoryInput);
+  //! Requires some additional specificity that we don't have at the moment
+  // const subcategoryLabel = document.createElement("label");
+  // subcategoryLabel.htmlFor = "subcategory";
+  // subcategoryLabel.textContent = "Subcategory: ";
+  // const subcategoryInput = document.createElement("select");
+  // subcategoryInput.name = "subcategory";
+  // // subcategoryInput.required = true;
+  // const subcategoryPlaceholder = document.createElement("option");
+  // subcategoryPlaceholder.value = "";
+  // subcategoryPlaceholder.disabled = true;
+  // subcategoryPlaceholder.textContent = "Select Option";
+  // subcategoryPlaceholder.selected = true;
+  // subcategoryPlaceholder.hidden = true;
+  // const optSC = document.createElement("option");
+  // optSC.value = " ";
+  // optSC.text = " ";
+  // const optSC2 = document.createElement("option");
+  // optSC2.value = " ";
+  // optSC2.text = " ";
+  // const optSC3 = document.createElement("option");
+  // optSC3.value = " ";
+  // optSC3.text = " ";
+  // const optSC4 = document.createElement("option");
+  // optSC4.value = " ";
+  // optSC4.text = " ";
+  // const optSC5 = document.createElement("option");
+  // optSC5.value = "";
+  // optSC5.text = "";
+  // subcategoryInput.appendChild(subcategoryPlaceholder);
+  // subcategoryInput.appendChild(optSC);
+  // subcategoryInput.appendChild(optSC2);
+  // subcategoryInput.appendChild(optSC3);
+  // subcategoryInput.appendChild(optSC4);
+  // subcategoryInput.appendChild(optSC5);
+  // addItemForm.appendChild(subcategoryLabel);
+  // addItemForm.appendChild(subcategoryInput);
 
   const storageLocationLabel = document.createElement("label");
   storageLocationLabel.htmlFor = "storage_location";
@@ -259,7 +273,7 @@ function createForm(outerSection) {
 
   //TODO construct form handler to send completed form data to database
   async function handleAddNewItemFormSubmit(event) {
-    //TODO: clear form and close modal on submit - no need to make a new one
+    //closes modal and clears form for next user
     addItemModal.style.display = "none";
 
     event.preventDefault();
@@ -268,13 +282,13 @@ function createForm(outerSection) {
 
     //sound on click
     //   const submitSound = document.createElement("audio");
-    //   submitSound.src = "";
+    //   submitSound.src = "client/public/assets/audio/add-popup-swoosh.wav";
     //   submitSound.volume = 0.5;
     //   submitSound.play();
 
     // this is to see our posted data
     console.log(
-      `${formValues.item_name} ${formValues.quantity} ${formValues.unit_type} ${formValues.category} ${formValues.subcategory} ${formValues.storage_location} ${formValues.expiry_date} ${formValues.comments}`
+      `${formValues.item_name} ${formValues.quantity} ${formValues.unit_size} ${formValues.unit_type} ${formValues.category} ${formValues.storage_location} ${formValues.expiry_date} ${formValues.comments}`
     );
 
     // fetch the POST server route
@@ -307,6 +321,16 @@ const foundItems = await getData();
 function search() {
   let flag = false;
   //   const searchvalue = document.getElementById("search").value;
+
+  //! inserted code
+
+  const reloadData = async () => {
+    await getData();
+  };
+  reloadData();
+
+  //! code insert ended
+
   const searchvalue = document.querySelector(".searchbar").value;
   console.log("Searchbar input:");
   console.log(searchvalue);
@@ -328,9 +352,7 @@ function search() {
     alert("No such item was found");
   }
 }
-function add() {
-  alert("Add entry to table");
-}
+
 function edit() {
   alert("Edit entry");
 }
@@ -456,6 +478,7 @@ const columnName = [
   "NAME",
   "DATE ADDED",
   "QUANTITY",
+  "UNITSIZE",
   "UNITTYPE",
   "UNITSIZE", // ==============tom//
   "CATEGORY",
@@ -515,6 +538,7 @@ function populateRows(tbody, data) {
       item.item_name, //===============rory//
       item.date_added,
       item.quantity,
+      item.unit_size,
       item.unit_type,
       item.unit_size, // ==============tom//
       item.category,
