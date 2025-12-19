@@ -67,19 +67,19 @@ What went really well and what could have gone better?
 Detailing useful external sources that helped you complete the assignment (e.g Youtube tutorials).
 Describing errors or bugs you encountered while completing your assignment.
 
-<!-- RORY -->
+###RORY
 
 In the group project, I mainly worked on CSS and wireframing. Once those tasks were completed, I began to step in and support other areas of the project where needed. Although I have worked in teams many times before and received formal leadership training at the Royal Navy Leadership Academy, I still learned a great deal from this experience. Building a full-stack application as a group highlighted many working parts that are often unseen, particularly how closely different areas of development depend on one another.
 
 In hindsight, I think being very specific about responsibilities is essential. Rather than saying, “I’m turning the Figma design into HTML and CSS,” it would have been more effective to say, “I’m going to recreate this specific section from Figma, add these buttons to the HTML, and then we’ll make them dynamic.” Being more precise would have improved clarity and collaboration within the team.
 
-<!-- ANNABEL -->
+### ANNABEL
 
 Working in a group on a project was a novelty in the medium; we all have our own different way of doing things and understanding, these are essentially brand new concepts for most of us afterall. Personally I had concerns in overstepping when it came to working on other people's code, as I feared that it could ruin something that they did but the task that I needed to do was entirely necessary for the completion of my own work. So working in a way that clicks our code together and managaing the different ways we each work was something that we took a little while getting used to. I think that sometimes we would have benefitted from implementing some more structure but we knew what we were doing most of the time and we knew our individual task targets.
 
 We realised at the end that this is all part of the same learning process that we have found ourselves on. There is so much that my team knew that I didn't know, how to find new ways of constructing features and how to find some other guides, which was really helpful for my own growth and learning.
 
-<!-- TOM -->
+### TOM
 
 I think the two biggest obstacles we faced was that we all have very different methods of how we structure our code and we didn't allocate tasks with relational aspects in mind. For example: I had made and demonstrated a system where interactive elements of the screen can be dynamically generated using DOM manipulation with the intention that anybody who needs to insert interactive elements into dynamically generated containers (such as the modal form for adding items), however we all ended up kind of being isolated inside our own sections in the code. I don't think this was helped by issues we were facing with git as we were all nervous about causing merge conflicts! More practice in group projects should alleviate this concern, and with the power of hindsight I will certainly be going into my next group project wanting to discuss coding practices together to make sure we are on the same page.
 
@@ -89,7 +89,7 @@ I mentioned earlier that I was handling DOM elements and the search functionalit
 
 When we had catastrophic database problems on the final day, I ended up spending a lot of time on the table generation to try and assign IDs to implement edit buttons that would sit next to the populate rows and read the corresponding row directly, feeding that into Annabel's code so we could repurpose the Add Item form to also work as an edit form. But due to differences in coding practices, this was a very difficult task and I wasn't able to complete it in time. Again, this highlights the importance of identifying which aspects of our code are going to be directly related and how it would be better to assign our roles based on that.
 
-<!-- NENE -->
+### NENE
 
 I believe we met the requirements of the assignment in terms of all deliverables - we have a deployed site, with the code uploaded to GitHub showing clear contribution from all team members. Our Trello board shows proof of our daily meetings and task silos. We have attached files for our database activity and completed a comprehensive project presentation. We encountered numerous challenges when it came to teamwork - planning, execution, plumbing code together and even simply agreeing on features became a more difficult task than it would be on a solo project.
 
