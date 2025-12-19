@@ -75,6 +75,10 @@ In hindsight, I think being very specific about responsibilities is essential. R
 
 <!-- ANNABEL -->
 
+Working in a group on a project was a novelty in the medium; we all have our own different way of doing things and understanding, these are essentially brand new concepts for most of us afterall. Personally I had concerns in overstepping when it came to working on other people's code, as I feared that it could ruin something that they did but the task that I needed to do was entirely necessary for the completion of my own work. So working in a way that clicks our code together and managaing the different ways we each work was something that we took a little while getting used to. I think that sometimes we would have benefitted from implementing some more structure but we knew what we were doing most of the time and we knew our individual task targets.
+
+We realised at the end that this is all part of the same learning process that we have found ourselves on. There is so much that my team knew that I didn't know, how to find new ways of constructing features and how to find some other guides, which was really helpful for my own growth and learning.
+
 <!-- TOM -->
 
 I think the two biggest obstacles we faced was that we all have very different methods of how we structure our code and we didn't allocate tasks with relational aspects in mind. For example: I had made and demonstrated a system where interactive elements of the screen can be dynamically generated using DOM manipulation with the intention that anybody who needs to insert interactive elements into dynamically generated containers (such as the modal form for adding items), however we all ended up kind of being isolated inside our own sections in the code. I don't think this was helped by issues we were facing with git as we were all nervous about causing merge conflicts! More practice in group projects should alleviate this concern, and with the power of hindsight I will certainly be going into my next group project wanting to discuss coding practices together to make sure we are on the same page.
