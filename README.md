@@ -38,7 +38,7 @@ Optional:
 As a user, I want to be able to filter by allergens (14 common food allergens)
 As a user, I want to be able to scan stock in by barcode
 As a user, I want to have a visual representation (image) of the stock
-As a user, I want to manage incoming and outgoing stock
+As a user, I want to manage incoming donations and expiring stock
 As a user, I want to be notified of low stock levels ( using RAG system)
 
 ## WIREFRAME
