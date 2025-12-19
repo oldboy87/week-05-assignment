@@ -68,7 +68,12 @@ Describing errors or bugs you encountered while completing your assignment.
 
 <!-- RORY -->
 
-<!-- ANNABEL -->
+ANNABEL
+Working in a group on a project was a novelty in the medium; we all have our own different way of doing things and understanding, these are essentially brand new concepts for most of us afterall. Personally I had concerns in overstepping when it came to working on other people's code, as I feared that it could ruin something that they did but the task that I needed to do was entirely necessary for the completion of my own work. So working in a way that clicks our code together and managaing the different ways we each work was something that we took a little while getting used to. I think that sometimes we would have benefitted from implementing some more structure but we knew what we were doing most of the time and we knew our individual task targets.
+
+We realised at the end that this is all part of the same learning process that we have found ourselves on. There is so much that my team knew that I didn't know, how to find new ways of constructing features and how to find some other guides, which was really helpful for my own growth and learning.
+
+There are some goals that we didn't meet exactly how the user story proposes, but it is possible that some of our user stories were more complex than we needed and we also lost a little bit of focus at times, which is something that I would like to make sure is considered for the next group project.
 
 <!-- TOM -->
 
