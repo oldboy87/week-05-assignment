@@ -67,7 +67,7 @@ What went really well and what could have gone better?
 Detailing useful external sources that helped you complete the assignment (e.g Youtube tutorials).
 Describing errors or bugs you encountered while completing your assignment.
 
-###RORY
+### RORY
 
 In the group project, I mainly worked on CSS and wireframing. Once those tasks were completed, I began to step in and support other areas of the project where needed. Although I have worked in teams many times before and received formal leadership training at the Royal Navy Leadership Academy, I still learned a great deal from this experience. Building a full-stack application as a group highlighted many working parts that are often unseen, particularly how closely different areas of development depend on one another.
 
