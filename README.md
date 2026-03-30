@@ -1,11 +1,3 @@
-Tom says Hello!
-
-Annabel says Hi!
-
-Nene says Hawaiyu ^^
-
-Rory says hi!
-
 <!-- TEAM REFLECTION  -->
 
 # PROJECT DETAILS
